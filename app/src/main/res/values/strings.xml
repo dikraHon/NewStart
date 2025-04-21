@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewStart</string>
+    <string name="next_activity">next activity</string>
 </resources>
