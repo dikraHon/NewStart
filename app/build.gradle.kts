@@ -33,10 +33,18 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
+    //
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.lifecycle.livedata.ktx)
+    implementation ("androidx.fragment:fragment-ktx:1.5.5")
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
