@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NewStart</string>
+    <string name="touch_me">touch me</string>
+    <string name="entert_text">entert text</string>
+    <string name="enter_your_note">Enter your note</string>
+    <string name="add_note">add note</string>
+    <string name="enter_text">Enter text</string>
 </resources>
