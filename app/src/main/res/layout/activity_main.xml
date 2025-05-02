@@ -16,4 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.example.newstart.CircularProgressView
+        android:id="@+id/circularProgress"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:progressColor="@color/blue"
+        app:backgroundColor="@color/gray"
+        app:strokeWidth="8dp"
+        app:progress="30"
+        app:maxProgress="100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
