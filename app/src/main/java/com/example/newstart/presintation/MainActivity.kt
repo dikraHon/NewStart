@@ -1,8 +1,8 @@
-package com.example.newstart
+package com.example.newstart.presintation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-
+import com.example.newstart.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
