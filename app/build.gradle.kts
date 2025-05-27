@@ -33,10 +33,31 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
+    //viewModel
+    implementation ("androidx.fragment:fragment-ktx:1.5.5")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    //network
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.moshi)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+// OkHttp + Logging
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
+    implementation(libs.coil)
+    implementation(libs.glide)
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
