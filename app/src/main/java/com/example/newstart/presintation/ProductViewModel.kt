@@ -2,48 +2,61 @@ package com.example.newstart.presintation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newstart.domain.model.CartItem
-import com.example.newstart.domain.model.Product
-import com.example.newstart.domain.repository.ProductRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import com.example.newstart.data.CartItem
+import com.example.newstart.data.CartProduct
+import com.example.newstart.data.Product
+import com.example.newstart.reposutory.RetrofitInstance
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-@HiltViewModel
-class ProductViewModel @Inject constructor(
-    private val repository: ProductRepository
-) : ViewModel() {
+class ProductViewModel: ViewModel() {
 
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products
 
-    private val _selectedProduct = MutableStateFlow<Product?>(null)
-    val selectedProduct: StateFlow<Product?> = _selectedProduct
-
     fun loadProducts() {
         viewModelScope.launch {
-            _products.value = repository.getProducts()
+            try {
+                _products.value = RetrofitInstance.api.getProducts()
+            } catch (e: Exception) {
+                e.message
+            }
         }
     }
 
-    fun loadProductDetails(id: Int) {
+    fun addToCart(productId: Int) {
         viewModelScope.launch {
-            _selectedProduct.value = repository.getProductDetails(id)
+            try {
+                val cartItem = CartItem(
+                    products = listOf(CartProduct(productId, 1)))
+                RetrofitInstance.api.addToCart(cartItem)
+            } catch (e: Exception) {
+                e.message
+            }
         }
     }
 
-    fun addProductToCart(productId: Int) {
+    fun deleteFromCart(cartId: Int) {
         viewModelScope.launch {
-            repository.addToCart(CartItem(productId, 1))
+            try {
+                RetrofitInstance.api.deleteFromCart(cartId)
+            } catch (e: Exception) {
+                e.message
+            }
         }
     }
 
-    fun updateProductDetails(product: Product) {
+    fun updateProduct(product: Product) {
         viewModelScope.launch {
-            _selectedProduct.value = repository.updateProduct(product)
-            loadProducts()
+            try {
+                val updatedProduct = RetrofitInstance.api.updateProduct(product.id, product)
+                _products.value = _products.value.map {
+                    if (it.id == product.id) updatedProduct else it
+                }
+            } catch (e: Exception) {
+                e.message
+            }
         }
     }
 }
