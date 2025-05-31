@@ -1,7 +1,7 @@
 package com.example.newstart.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.newstart.data.Product
+import com.example.newstart.domain.model.Product
 
 class ProductDiffCallback : DiffUtil.ItemCallback<Product>() {
 

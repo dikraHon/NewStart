@@ -1,7 +1,4 @@
-package com.example.newstart.data
-
-import com.squareup.moshi.Json
-
+package com.example.newstart.domain.model
 
 data class Product(
     val id: Int,
@@ -9,6 +6,6 @@ data class Product(
     val price: Double,
     val description: String,
     val category: String,
-    val image: String,
+    val imageUrl: String,
     val rating: Rating
 )

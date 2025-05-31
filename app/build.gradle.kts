@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -39,8 +42,11 @@ android {
 }
 
 dependencies {
-// Fragment
-    implementation ("androidx.fragment:fragment-ktx:1.5.5")
+
+    //ksp
+    implementation( libs.dagger.hilt.android)
+    ksp(libs.hilt.compiler)
+    ksp(libs.androidx.hilt.compiler)
 
     // Retrofit и Moshi
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
@@ -53,13 +59,13 @@ dependencies {
     // Lifecycle и ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
-    // OkHttp
-    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
-    // Coil для загрузки изображений
+
+    // Coil
     implementation ("io.coil-kt:coil:2.4.0")
 
-        //
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

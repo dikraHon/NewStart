@@ -3,12 +3,12 @@ package com.example.newstart.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.example.newstart.data.Product
+import com.example.newstart.domain.model.Product
 import com.example.newstart.databinding.ItemProductBinding
 
 class ProductAdapter(
-    private val onAddToCart: (Int) -> Unit,
-    private val onEdit: (Product) -> Unit
+    private val onItemClick: (Product) -> Unit,
+    private val onAddToCart: (Product) -> Unit
 ) : ListAdapter<Product, ProductViewHolder>( ProductDiffCallback() ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -17,7 +17,7 @@ class ProductAdapter(
             parent,
             false
         )
-        return ProductViewHolder(binding, onAddToCart, onEdit)
+        return ProductViewHolder(binding, onItemClick, onAddToCart)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
